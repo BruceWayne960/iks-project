@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211b18">
+  <title>Raga Atlas — Explore India's Musical Heritage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="map-engine.js"></script>
+  <script defer src="map-svg.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Raga Atlas home">
+      <span class="brand-mark" aria-hidden="true">♪</span>
+      <span>Raga <em>Atlas</em></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#explore">Explore map</a>
+      <a href="#voices">Voices of India</a>
+      <a href="#about">About the project</a>
+    </nav>
+    <span class="top-tag">A DIGITAL MUSIC ATLAS</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> THE SOUNDS OF INDIA</p>
+        <h1>Every region has<br><em>a story to sing.</em></h1>
+        <p class="hero-description">Travel across India through its musical traditions. Choose a state to discover instruments, their sounds, and the stories behind them.</p>
+        <a class="hero-cta" href="#explore">Explore the map <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-ring ring-one"></div>
+        <div class="art-ring ring-two"></div>
+        <div class="art-note note-one">♪</div>
+        <div class="art-note note-two">♫</div>
+        <div class="art-center">卐<br><small>ॐ</small></div>
+        <p class="art-caption">A living heritage<br>in every note</p>
+      </div>
+    </section>
+
+    <section class="explore-section" id="explore">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR JOURNEY BEGINS HERE</p>
+          <h2>Explore by state</h2>
+          <p class="section-subtitle">Select a state on the map or search for a region.</p>
+        </div>
+        <div class="map-key"><span></span> Selectable regions</div>
+      </div>
+
+      <div class="explorer-layout">
+        <div class="map-panel">
+          <div class="map-panel-top">
+            <span class="panel-label">INDIA · STATE & UT MAP</span>
+            <span class="live-dot">INTERACTIVE</span>
+          </div>
+          <div class="map-wrap">
+            <india-svg-map
+              id="indiaMap"
+              src="https://raw.githubusercontent.com/nikhilsawantse/india-map-studio/main/assets/maps/india-states.svg"
+              aria-label="Interactive map of Indian states and union territories">
+            </india-svg-map>
+            <div class="map-loading" id="mapStatus">Loading state boundaries…</div>
+          </div>
+          <p class="map-hint"><span>↖</span> Hover over a region, then click to explore it.</p>
+        </div>
+
+        <aside class="detail-panel" aria-live="polite">
+          <div class="detail-topline"><span class="detail-icon">♫</span><span id="detailRegion">YOUR SELECTED REGION</span></div>
+          <p class="detail-kicker" id="detailKicker">WELCOME TO RAGA ATLAS</p>
+          <h3 id="stateTitle">Choose a state</h3>
+          <p class="state-description" id="stateDescription">Your musical journey starts with a click. Select any state on the map to discover its associated instruments and traditions.</p>
+          <div class="detail-divider"></div>
+          <div class="instrument-heading">
+            <h4>Featured instruments</h4>
+            <span id="instrumentCount">0 featured</span>
+          </div>
+          <div id="instrumentList" class="instrument-list">
+            <div class="empty-state">
+              <span class="empty-symbol">♪</span>
+              <p>Instrument stories will appear here when you choose a state.</p>
+            </div>
+          </div>
+          <p class="research-note">Research note: regional associations can overlap. Verify every description and source before publishing.</p>
+        </aside>
+      </div>
+
+      <div class="state-directory">
+        <div class="directory-heading">
+          <div>
+            <p class="eyebrow">FIND YOUR REGION</p>
+            <h3>Or browse the directory</h3>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="stateSearch" type="search" placeholder="Search a state or UT…" autocomplete="off">
+          </label>
+        </div>
+        <div id="stateButtons" class="state-buttons"></div>
+        <p id="searchEmpty" class="search-empty" hidden>No matching state found. Try another name.</p>
+      </div>
+    </section>
+
+    <!-- NEW VOICES OF INDIA SECTION -->
+    <section class="voices-section" id="voices">
+      <div class="voices-heading">
+        <h2>Voices of India, <em>the great classical singers.</em></h2>
+        <p class="voices-subtitle">Instruments give a region its rhythm, but the voice is where Indian classical music begins. Meet some of the singers, Hindustani and Carnatic, who shaped how India sings.</p>
+      </div>
+
+      <div class="voices-grid">
+        <!-- Row 1 -->
+        <article class="voice-card">
+          <img src="images/ms-subbulakshmi.jpg" alt="M. S. Subbulakshmi" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>ms-subbulakshmi.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Carnatic</span>
+            <h3>M. S. Subbulakshmi</h3>
+            <span class="voice-location">Madurai, Tamil Nadu</span>
+            <p>The first musician to receive the Bharat Ratna, her devotional voice carried Carnatic music to the United Nations.</p>
+          </div>
+        </article>
+        
+        <article class="voice-card">
+          <img src="images/bhimsen-joshi.jpg" alt="Bhimsen Joshi" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>bhimsen-joshi.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Kirana gharana</span>
+            <h3>Bhimsen Joshi</h3>
+            <span class="voice-location">Gadag, Karnataka</span>
+            <p>A thunderous khayal singer and Bharat Ratna, loved equally for his abhangs and bhajans.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/bade-ghulam-ali-khan.jpg" alt="Bade Ghulam Ali Khan" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>bade-ghulam-ali-khan.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Patiala gharana</span>
+            <h3>Bade Ghulam Ali Khan</h3>
+            <span class="voice-location">Kasur, Punjab</span>
+            <p>Famed for his effortless range and the romance of his thumris, including "Prem ke jogi".</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/gangubai-hangal.jpg" alt="Gangubai Hangal" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>gangubai-hangal.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Kirana gharana</span>
+            <h3>Gangubai Hangal</h3>
+            <span class="voice-location">Hubballi, Karnataka</span>
+            <p>Her deep, powerful voice broke barriers of caste and gender over a career of seven decades.</p>
+          </div>
+        </article>
+
+        <!-- Row 2 -->
+        <article class="voice-card">
+          <img src="images/pandit-jasraj.jpg" alt="Pandit Jasraj" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>pandit-jasraj.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Mewati gharana</span>
+            <h3>Pandit Jasraj</h3>
+            <span class="voice-location">Hisar, Haryana</span>
+            <p>A master of devotional khayal who created the jasrangi style of male-female duet.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/girija-devi.jpg" alt="Girija Devi" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>girija-devi.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Banaras gharana</span>
+            <h3>Girija Devi</h3>
+            <span class="voice-location">Varanasi, Uttar Pradesh</span>
+            <p>Celebrated as the "Queen of Thumri", she kept the light-classical forms of Banaras alive.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/kumar-gandharva.jpg" alt="Kumar Gandharva" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>kumar-gandharva.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani</span>
+            <h3>Kumar Gandharva</h3>
+            <span class="voice-location">Dewas, Madhya Pradesh</span>
+            <p>A fearless innovator who drew on Malwa folk songs and the nirguni bhajans of Kabir.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/m-balamuralikrishna.jpg" alt="M. Balamuralikrishna" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>m-balamuralikrishna.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Carnatic</span>
+            <h3>M. Balamuralikrishna</h3>
+            <span class="voice-location">Sankaraguptam, Andhra Pradesh</span>
+            <p>A child prodigy turned composer who invented new ragas and wrote kritis in every melakarta.</p>
+          </div>
+        </article>
+
+        <!-- Row 3 -->
+        <article class="voice-card">
+          <img src="images/semmangudi-srinivasa-iyer.jpg" alt="Semmangudi Srinivasa Iyer" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>semmangudi-srinivasa-iyer.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Carnatic</span>
+            <h3>Semmangudi Srinivasa Iyer</h3>
+            <span class="voice-location">Thanjavur, Tamil Nadu</span>
+            <p>Revered as the grand patriarch of Carnatic music and a guru to generations of singers.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/k-j-yesudas.jpg" alt="K. J. Yesudas" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>k-j-yesudas.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Carnatic</span>
+            <h3>K. J. Yesudas</h3>
+            <span class="voice-location">Kochi, Kerala</span>
+            <p>A Carnatic concert singer whose voice also became the sound of South Indian cinema.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/parveen-sultana.jpg" alt="Parveen Sultana" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>parveen-sultana.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Patiala gharana</span>
+            <h3>Parveen Sultana</h3>
+            <span class="voice-location">Nagaon, Assam</span>
+            <p>Known for dazzling taans across three octaves and her rendition of "Hamein tumse pyar kitna".</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/prabha-atre.jpg" alt="Prabha Atre" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>prabha-atre.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Kirana gharana</span>
+            <h3>Prabha Atre</h3>
+            <span class="voice-location">Pune, Maharashtra</span>
+            <p>A singer, scholar and composer whose khayals and bandishes are sung across the country.</p>
+          </div>
+        </article>
+
+        <!-- Row 4 -->
+        <article class="voice-card">
+          <img src="images/rashid-khan.jpg" alt="Rashid Khan" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>rashid-khan.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Rampur-Sahaswan gharana</span>
+            <h3>Rashid Khan</h3>
+            <span class="voice-location">Badaun, Uttar Pradesh · Kolkata</span>
+            <p>A rich, unhurried khayal voice who brought classical singing to a new generation.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/ajoy-chakrabarty.jpg" alt="Ajoy Chakrabarty" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>ajoy-chakrabarty.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Patiala gharana</span>
+            <h3>Ajoy Chakrabarty</h3>
+            <span class="voice-location">Kolkata, West Bengal</span>
+            <p>A versatile vocalist and guru who founded the Shrutinandan school of music in Kolkata.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/kaushiki-chakraborty.jpg" alt="Kaushiki Chakraborty" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>kaushiki-chakraborty.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani · Patiala gharana</span>
+            <h3>Kaushiki Chakraborty</h3>
+            <span class="voice-location">Kolkata, West Bengal</span>
+            <p>One of today's leading voices in khayal and thumri, trained by her father Ajoy Chakrabarty.</p>
+          </div>
+        </article>
+
+        <article class="voice-card">
+          <img src="images/shubha-mudgal.jpg" alt="Shubha Mudgal" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\'voice-img-fallback\'>Save image as<br>shubha-mudgal.jpg</div>');">
+          <div class="voice-info">
+            <span class="voice-genre">Hindustani</span>
+            <h3>Shubha Mudgal</h3>
+            <span class="voice-location">Prayagraj, Uttar Pradesh · Delhi</span>
+            <p>Moves freely between khayal, thumri and dadra, and contemporary music.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-symbol" aria-hidden="true">ॐ</div>
+      <div>
+        <p class="eyebrow">ABOUT THIS PROJECT</p>
+        <h2>Preserving tradition.<br><em>Making discovery interactive.</em></h2>
+      </div>
+      <p class="about-copy">Raga Atlas is a student-led digital atlas concept for exploring India's diverse musical heritage. The map and sample content are a starting point; add your team's research, images, audio, and citations to make it your own.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-brand">Raga Atlas <span>·</span> A student project</span>
+    <span class="footer-note">Map boundaries: India Map Studio / review third-party data terms before redistribution.</span>
+  </footer>
+</body>
+</html>
